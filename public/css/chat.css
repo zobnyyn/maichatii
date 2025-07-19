@@ -1,0 +1,562 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&display=swap');
+
+body, .chat-msg, .main-header, .chat-form input, .chat-form button {
+    font-family: 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #23242a 0%, #181a20 100%);
+    color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    background: linear-gradient(90deg, #0d2236 0%, #4a1023 100%);
+    box-shadow: 0 0 16px #0d2236;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+.main-header-inner {
+    max-width: 900px;
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 100%;
+}
+.main-header-title {
+    font-family: 'Mochiy Pop One',sans-serif;
+    font-size: 1.5em;
+    color: #f7b2d9;
+    letter-spacing: 2px;
+}
+.main-header-title a {
+    color: #f7b2d9;
+    text-decoration: none;
+}
+.main-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.fullpage-chat {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    background: none;
+    padding-top: 70px;
+}
+.chat-history {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0 auto;
+    width: 100vw;
+    max-width: 900px;
+    height: calc(100vh - 132px);
+    overflow-y: auto;
+    font-size: 1.1em;
+    color: #e0e0e0;
+    background: none;
+    padding: 32px 0 0 0;
+    z-index: 1;
+}
+.chat-msg {
+    margin-bottom: 18px;
+    word-break: break-word;
+}
+.chat-msg.user {
+    text-align: right;
+    justify-content: flex-end;
+    display: flex;
+    background: #23242a;
+    color: #e0e0e0;
+    border-radius: 16px 0 16px 16px;
+    padding: 12px 18px;
+    margin-left: auto;
+    margin-right: 0;
+    font-weight: 500;
+    max-width: 70%;
+    width: fit-content;
+    min-width: 0;
+    word-break: break-word;
+}
+.chat-msg.user span {
+    color: #b0c4de;
+    font-weight: 500;
+    margin-left: auto;
+}
+.chat-msg.bot {
+    text-align: left;
+    justify-content: flex-start;
+    display: flex;
+    background: #181a20;
+    color: #d2d2e0;
+    border-radius: 0 16px 16px 16px;
+    padding: 12px 18px;
+    margin-right: auto;
+    margin-left: 0;
+    font-weight: 500;
+    max-width: 70%;
+    width: fit-content;
+    min-width: 0;
+    word-break: break-word;
+}
+.chat-msg.bot span {
+    color: #aee3f7;
+    font-weight: 500;
+}
+.chat-form {
+    position: fixed;
+    left: 0;
+    bottom: 14px; /* форма над футером, учитываем высоту футера */
+    width: 100vw;
+    max-width: 900px;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: stretch;
+    background: linear-gradient(135deg, #23242a 0%, #181a20 100%);
+    padding: 0;
+    height: 64px; /* уменьшена высота формы */
+    border-top: none !important;
+    z-index: 102;
+    border-radius: 16px;
+    box-shadow: none;
+    overflow: hidden;
+}
+.chat-form-inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: stretch;
+}
+.chat-form input {
+    flex: 1;
+    padding: 0 18px;
+    border: none;
+    border-radius: 0;
+    font-size: 1.1em;
+    background: transparent;
+    color: #e0e0e0;
+    outline: none;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'Zen Maru Gothic', 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.chat-form-btn {
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #8ecae6 0%, #f7b2d9 100%);
+    color: #23242a;
+    border: none;
+    border-radius: 0;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: none;
+    font-size: 1em;
+    min-width: 64px;
+    transition: background 0.3s, color 0.3s;
+}
+.chat-form-btn::after {
+    content: '\27A4';
+    font-size: 1.3em;
+    margin-left: 0;
+}
+.chat-bottom-header {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+    width: 100vw;
+    max-width: 900px;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    background: #23242a;
+    color: #f7b2d9;
+    font-size: 1.15em;
+    text-align: center;
+    padding: 12px 0 8px 0;
+    z-index: 101;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -1px 8px #23242a;
+}
+.chat-bottom-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    max-width: none;
+    margin: 0;
+    right: 0;
+    background: #23242a;
+    color: #f7b2d9;
+    font-size: 1.15em;
+    text-align: center;
+    height: auto;
+    padding: 0;
+    z-index: 101;
+    border-radius: 0;
+    box-shadow: 0 -1px 8px #23242a;
+    pointer-events: none;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    height: 32px;
+}
+.chat-msg.user, .chat-msg.bot {
+    font-family: 'Zen Maru Gothic', 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+/* Стили для кнопок в header (Debug, История, Регистрация, Вход, Выход) */
+.main-header button,
+.main-header form button,
+#register-toggle,
+#login-toggle,
+#debug-toggle,
+#history-toggle {
+    font-family: 'Zen Maru Gothic', 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    padding: 8px 22px;
+    border-radius: 12px;
+    border: 2px solid #23242a;
+    background: linear-gradient(90deg, #23242a 0%, #181a20 100%);
+    color: #e0e0e0;
+    box-shadow: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.main-header button:hover,
+.main-header form button:hover,
+#register-toggle:hover,
+#login-toggle:hover,
+#debug-toggle:hover,
+#history-toggle:hover {
+    background: linear-gradient(90deg, #181a20 0%, #23242a 100%);
+    color: #f7b2d9;
+    box-shadow: none;
+}
+#debug-panel {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    width: 340px;
+    max-width: 90vw;
+    max-height: 220px;
+    background: linear-gradient(135deg, #23242a 0%, #181a20 100%);
+    color: #e0e0e0;
+    border-radius: 18px;
+    box-shadow: 0 0 16px #181a20;
+    padding: 16px 20px;
+    font-size: 0.98em;
+    overflow-y: auto;
+    z-index: 10010;
+    border: none;
+    display: none;
+}
+#debug-panel b {
+    color: #f7b2d9;
+    font-size: 1.05em;
+}
+#debug-content {
+    color: #aee3f7;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Russo One', 'Zen Maru Gothic', Arial, sans-serif;
+    font-size: 0.97em;
+}
+.chat-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 16px;
+    vertical-align: middle;
+    box-shadow: 0 2px 8px #181a20;
+    background: #fff;
+}
+:root {
+    --main-bg: linear-gradient(90deg, #f7dbe9 0%, #aee3f7 100%);
+    --header-shadow: 0 0 16px #aee3f7;
+    --header-padding: 18px 0 12px 0;
+    --header-max-width: 900px;
+    --header-title-font: 'Mochiy Pop One',sans-serif;
+    --header-title-size: 1.5em;
+    --header-title-color: #333;
+    --header-title-spacing: 2px;
+    --header-link-color: #333;
+    --header-link-decoration: none;
+    --header-flex-gap: 12px;
+    --header-user-color: #f7b2d9;
+    --header-user-font-size: 1em;
+    --header-notauth-color: #aee3f7;
+    --header-notauth-font-size: 1em;
+    --footer-bg: #aee3f7;
+    --footer-shadow: 0 0 16px #f7b2d9;
+    --footer-padding: 18px 0 12px 0;
+    --footer-max-width: 900px;
+    --footer-title-font: 'Mochiy Pop One',sans-serif;
+    --footer-title-size: 1em;
+    --footer-title-color: #333;
+    --modal-bg: #23242a;
+    --modal-border: 2px solid #aee3f7;
+    --modal-radius: 24px;
+    --modal-shadow: 0 0 32px #aee3f7, 0 0 8px #f7b2d9 inset;
+    --modal-title-font: 'Mochiy Pop One',sans-serif;
+    --modal-title-size: 1.3em;
+    --modal-title-color: #aee3f7;
+    --modal-padding: 32px 36px;
+    --modal-field-margin: 18px;
+    --modal-btn-bg: #aee3f7;
+    --modal-btn-color: #333;
+    --modal-btn-border: 1px solid #f7b2d9;
+    --modal-btn-radius: 8px;
+    --modal-btn-font: 'Mochiy Pop One',sans-serif;
+    --modal-btn-size: 1em;
+    --modal-error-color: #f7b2d9;
+    --modal-hint-color: #888;
+    --modal-hint-size: 0.95em;
+}
+
+/* Модальные окна */
+#register-modal, #login-modal, #history-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(174,227,247,0.97);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.register-modal-inner, .login-modal-inner, .history-modal-inner {
+    background: var(--modal-bg);
+    border: var(--modal-border);
+    border-radius: var(--modal-radius);
+    box-shadow: var(--modal-shadow);
+    max-width: 400px;
+    width: 96vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: var(--modal-padding);
+    position: relative;
+}
+.history-modal-inner {
+    max-width: 600px;
+}
+.register-modal-title, .login-modal-title, .history-modal-title {
+    font-size: var(--modal-title-size);
+    font-family: var(--modal-title-font);
+    font-weight: bold;
+    color: var(--modal-title-color);
+    margin-bottom: 18px;
+}
+.register-modal-close, .login-modal-close, .history-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    font-size: 1.2em;
+    background: none;
+    color: #f7b2d9;
+    border: none;
+    cursor: pointer;
+}
+.register-modal-field, .login-modal-field {
+    margin-bottom: var(--modal-field-margin);
+}
+.register-modal-hint, .login-modal-hint {
+    color: var(--modal-hint-color);
+    font-size: var(--modal-hint-size);
+    margin-top: 4px;
+}
+.register-modal-btn, .login-modal-btn {
+    margin-top: 12px;
+    padding: 8px 24px;
+    background: var(--modal-btn-bg);
+    color: var(--modal-btn-color);
+    border: var(--modal-btn-border);
+    border-radius: var(--modal-btn-radius);
+    font-family: var(--modal-btn-font);
+    font-size: var(--modal-btn-size);
+    cursor: pointer;
+}
+.register-modal-errors, .login-modal-errors {
+    color: var(--modal-error-color);
+    margin-top: 18px;
+}
+.history-modal-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 60vh;
+    padding-right: 8px;
+}
+.history-list-item {
+    margin-bottom: 16px;
+}
+.history-list-user {
+    color: #f7b2d9;
+    font-weight: bold;
+}
+.history-list-user-msg {
+    margin-left: 12px;
+}
+.history-list-bot {
+    color: #aee3f7;
+    font-weight: bold;
+    margin-top: 6px;
+}
+.history-list-bot-msg {
+    margin-left: 12px;
+}
+.history-list-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 2px;
+}
+.ai-chat-window {
+    position: fixed;
+    right: 32px;
+    bottom: 120px;
+    width: 340px;
+    max-width: 90vw;
+    background: rgba(20,20,40,0.98);
+    border: 2px solid #aee3f7;
+    border-radius: 18px;
+    box-shadow: 0 0 32px #aee3f7, 0 0 16px #f7b2d9;
+    z-index: 10020;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+.ai-chat-header {
+    background: linear-gradient(90deg, #aee3f7 0%, #f7b2d9 100%);
+    color: #23242a;
+    font-family: 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-bottom: 1px solid #aee3f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ai-chat-close {
+    cursor: pointer;
+    font-size: 1.3em;
+    color: #f7b2d9;
+    margin-left: 12px;
+    transition: color 0.2s;
+}
+.ai-chat-close:hover {
+    color: #aee3f7;
+}
+.ai-chat-history {
+    padding: 16px 18px;
+    height: 180px;
+    overflow-y: auto;
+    font-size: 1em;
+    color: #e0e0e0;
+    background: none;
+}
+.ai-chat-msg {
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+.ai-chat-msg.user span {
+    color: #f7b2d9;
+    font-weight: bold;
+}
+.ai-chat-msg.bot span {
+    color: #aee3f7;
+    font-weight: bold;
+}
+.ai-chat-form {
+    display: flex;
+    border-top: 1px solid #aee3f7;
+    background: none;
+    padding: 10px 12px;
+}
+.ai-chat-form input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #f7b2d9;
+    border-radius: 8px;
+    font-size: 1em;
+    background: #181a20;
+    color: #e0e0e0;
+    margin-right: 8px;
+    outline: none;
+    font-family: 'Zen Maru Gothic', 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.ai-chat-form button {
+    padding: 8px 18px;
+    background: linear-gradient(90deg, #aee3f7 0%, #f7b2d9 100%);
+    color: #23242a;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+.cyber-btn {
+    margin-top: 24px;
+    margin-right: 16px;
+    padding: 12px 32px;
+    background: linear-gradient(90deg, #aee3f7 0%, #f7b2d9 100%);
+    color: #23242a;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Mochiy Pop One', 'Russo One', 'Rubik Mono One', 'Segoe UI', Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    box-shadow: 0 0 16px #aee3f7, 0 0 8px #f7b2d9;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+}
+.cyber-btn:hover {
+    background: linear-gradient(90deg, #f7b2d9 0%, #aee3f7 100%);
+    color: #fff;
+    box-shadow: 0 0 32px #f7b2d9, 0 0 16px #aee3f7;
+}
