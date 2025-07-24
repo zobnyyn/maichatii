@@ -20,7 +20,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected function casts(): array
+    protected function casts(): array // этот метод нужен для указания типов данных, которые будут использоваться при сериализации и десериализации модели
     {
         return [
             'email_verified_at' => 'datetime',

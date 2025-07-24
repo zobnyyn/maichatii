@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChatMessage extends Model
 {
-    protected $fillable = [
+    protected $fillable = [ // этот массив определяет, какие поля модели могут быть массово присвоены
         'user_message',
         'bot_answer',
         'user_id',
